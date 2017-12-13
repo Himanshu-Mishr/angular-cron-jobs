@@ -1,6 +1,6 @@
 {
   "name": "angular-material-cron-jobs",
-  "version": "1.0.0",
+  "version": "v3.2.1",
   "main": [
     "dist/angular-cron-jobs.js",
     "dist/angular-cron-jobs.css"
