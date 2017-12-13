@@ -27,6 +27,6 @@
     "commit": "e2667a7d6b96b3d66c6fe2ce268f27c99c07ae16"
   },
   "_source": "https://github.com/Himanshu-Mishr/angular-material-cron-jobs.git",
-  "_target": "^3.2.0",
+  "_target": "*",
   "_originalSource": "angular-material-cron-jobs"
 }

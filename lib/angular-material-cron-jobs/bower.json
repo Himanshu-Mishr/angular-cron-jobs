@@ -18,15 +18,5 @@
     "node_modules",
     "components",
     "lib"
-  ],
-  "homepage": "https://github.com/Himanshu-Mishr/angular-material-cron-jobs",
-  "_release": "3.2.0",
-  "_resolution": {
-    "type": "version",
-    "tag": "v3.2.0",
-    "commit": "e2667a7d6b96b3d66c6fe2ce268f27c99c07ae16"
-  },
-  "_source": "https://github.com/Himanshu-Mishr/angular-material-cron-jobs.git",
-  "_target": "^3.2.0",
-  "_originalSource": "angular-material-cron-jobs"
+  ]
 }

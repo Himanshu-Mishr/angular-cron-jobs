@@ -1,4 +1,4 @@
-var boilerPlateApp = angular.module('boilerPlateApp', ['ui.router', 'angular-cron-jobs'])
+var boilerPlateApp = angular.module('boilerPlateApp', ['ngMaterial', 'ui.router', 'angular-cron-jobs'])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
 	function($stateProvider, $urlRouterProvider, $locationProvider) {
 
