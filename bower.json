@@ -5,7 +5,7 @@
     "dist/angular-cron-jobs.js",
     "dist/angular-cron-jobs.css"
   ],
-  "description": "Material UI Component For Creating Cron Job Syntax To Send To Server",
+  "description": "Material UI Component for Creating Cron Job Syntax To Send To Server",
   "repository": {
     "type": "git",
     "url": "git://github.com/himanshu-mishr/angular-material-cron-jobs.git"
