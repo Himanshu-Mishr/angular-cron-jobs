@@ -1,97 +1,113 @@
 /**
  * UI Component For Creating Cron Job Syntax To Send To Server
- * @version v3.2.0 - 2016-09-20 * @link https://github.com/jacobscarter/angular-cron-jobs
+ * @version v3.2.0 - 2017-12-13 * @link https://github.com/jacobscarter/angular-cron-jobs
  * @author Jacob Carter <jc@jacobcarter.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 angular.module('templates-angularcronjobs', ['cronselection.html']);
 
-angular.module("cronselection.html", []).run(["$templateCache", function($templateCache) {
+angular.module("cronselection.html", []).run(["$templateCache", function ($templateCache) {
   $templateCache.put("cronselection.html",
-    "<div class=\"cron-wrap\">\n" +
-    "    <span>Every: </span>\n" +
-    "    <div class=\"cron-select-wrap\">\n" +
-    "        <select class=\"cron-select\" ng-model=\"myFrequency.base\" ng-options=\"item.value as item.label for item in frequency\"></select>\n" +
-    "    </div>\n" +
-    "    <div class=\"select-options\">\n" +
-    "        <span ng-show=\"myFrequency.base == 4\">on </span>\n" +
-    "        <div ng-show=\"myFrequency.base == 4\" class=\"cron-select-wrap\">\n" +
-    "            <!-- If Multiple is Enabled -->\n" +
-    "            <select class=\"cron-select day-value\"\n" +
-    "                    ng-model=\"myFrequency.dayValues\"\n" +
-    "                    ng-if=\"allowMultiple\" multiple\n" +
-    "                    ng-options=\"value as (value | cronDayName: cronStyle) for value in dayValues\">\n" +
-    "            </select>\n" +
-    "            <!-- If Multiple is not Enabled -->\n" +
-    "            <select class=\"cron-select day-value\"\n" +
-    "                    ng-model=\"myFrequency.dayValues\"\n" +
-    "                    ng-if=\"!allowMultiple\"\n" +
-    "                    ng-options=\"value as (value | cronDayName: cronStyle) for value in dayValues\">\n" +
-    "            </select>\n" +
-    "        </div>\n" +
-    "        <span ng-show=\"myFrequency.base >= 5\">on the </span>\n" +
-    "        <div ng-show=\"myFrequency.base >= 5\" class=\"cron-select-wrap\">\n" +
-    "            <!-- If Multiple is Enabled -->\n" +
-    "            <select class=\"cron-select day-of-month-value\"\n" +
-    "                    ng-model=\"myFrequency.dayOfMonthValues\"\n" +
-    "                    ng-if=\"allowMultiple\" multiple\n" +
-    "                    ng-options=\"value as (value | cronNumeral) for value in dayOfMonthValues\">\n" +
-    "            </select>\n" +
-    "            <!-- If Multiple is not Enabled -->\n" +
-    "            <select class=\"cron-select day-of-month-value\"\n" +
-    "                    ng-model=\"myFrequency.dayOfMonthValues\"\n" +
-    "                    ng-if=\"!allowMultiple\"\n" +
-    "                    ng-options=\"value as (value | cronNumeral) for value in dayOfMonthValues\">\n" +
-    "            </select>\n" +
-    "        </div>\n" +
-    "        <span ng-show=\"myFrequency.base == 6\">of </span>\n" +
-    "        <!-- If Multiple is Enabled -->\n" +
-    "        <div ng-show=\"myFrequency.base == 6\" class=\"cron-select-wrap\">\n" +
-    "            <select class=\"cron-select month-value\"\n" +
-    "                    ng-model=\"myFrequency.monthValues\"\n" +
-    "                    ng-if=\"allowMultiple\" multiple\n" +
-    "                    ng-options=\"value as (value | cronMonthName) for value in monthValues\">\n" +
-    "            </select>\n" +
-    "            <!-- If Multiple is not Enabled -->\n" +
-    "            <select class=\"cron-select month-value\"\n" +
-    "                    ng-model=\"myFrequency.monthValues\"\n" +
-    "                    ng-if=\"!allowMultiple\"\n" +
-    "                    ng-options=\"value as (value | cronMonthName) for value in monthValues\">\n" +
-    "            </select>\n" +
-    "        </div>\n" +
-    "        <span ng-show=\"myFrequency.base >= 2\">at </span>\n" +
-    "        <!-- If Multiple is Enabled -->\n" +
-    "        <div ng-show=\"myFrequency.base >= 3\" class=\"cron-select-wrap\">\n" +
-    "            <select class=\"cron-select hour-value\"\n" +
-    "                    ng-model=\"myFrequency.hourValues\"\n" +
-    "                    ng-if=\"allowMultiple\" multiple\n" +
-    "                    ng-options=\"value as value for value in hourValues\">\n" +
-    "            </select>\n" +
-    "            <!-- If Multiple is not Enabled -->\n" +
-    "            <select class=\"cron-select hour-value\"\n" +
-    "                    ng-model=\"myFrequency.hourValues\"\n" +
-    "                    ng-if=\"!allowMultiple\"\n" +
-    "                    ng-options=\"value as value for value in hourValues\">\n" +
-    "            </select>\n" +
-    "        </div>\n" +
-    "        <span ng-show=\"myFrequency.base >= 3\"> : </span>\n" +
-    "        <!-- If Multiple is Enabled -->\n" +
-    "        <div ng-show=\"myFrequency.base >= 2\" class=\"cron-select-wrap\">\n" +
-    "            <select class=\"cron-select minute-value\"\n" +
-    "                    ng-model=\"myFrequency.minuteValues\"\n" +
-    "                    ng-if=\"allowMultiple\" multiple\n" +
-    "                    ng-options=\"value as value for value in minuteValues\">\n" +
-    "            </select>\n" +
-    "            <!-- If Multiple is not Enabled -->\n" +
-    "            <select class=\"cron-select minute-value\"\n" +
-    "                    ng-model=\"myFrequency.minuteValues\"\n" +
-    "                    ng-if=\"!allowMultiple\"\n" +
-    "                    ng-options=\"value as value for value in minuteValues\">\n" +
-    "            </select>\n" +
-    "        </div>\n" +
-    "        <span ng-show=\"myFrequency.base == 2\"> past the hour</span>\n" +
-    "    </div>\n" +
-    "</div>");
+    "<md-layout layout=\"row\">\n" +
+    "    <md-layout layout=\"column\">\n" +
+    "        <md-input-container>\n" +
+    "			<label>Every</label>\n" +
+    "			<md-select ng-model=\"myFrequency.base\">\n" +
+    "				<md-option ng-repeat=\"item in frequency\" value=\"{{item.value}}\">{{item.label}}</md-option>\n" +
+    "			</md-select>\n" +
+    "        </md-input-container>\n" +
+    "    </md-layout>\n" +
+    "    <md-layout layout=\"column\">\n" +
+    "		<div layout=\"row\">\n" +
+    "			<div ng-show=\"myFrequency.base == 4\">\n" +
+    "				<md-input-container>\n" +
+    "					<label>On</label>\n" +
+    "					<!-- If Multiple is Enabled -->\n" +
+    "					<md-select class=\"day-value\"\n" +
+    "							ng-model=\"myFrequency.dayValues\"\n" +
+    "							ng-if=\"allowMultiple\" multiple>\n" +
+    "						<md-option ng-repeat=\"value in dayValues\" value=\"{{value}}\">{{value | cronDayName: cronStyle}}</md-option>\n" +
+    "					</md-select>\n" +
+    "					<!-- If Multiple is not Enabled -->\n" +
+    "					<md-select class=\"day-value\"\n" +
+    "							ng-model=\"myFrequency.dayValues\"\n" +
+    "							ng-if=\"!allowMultiple\">\n" +
+    "						<md-option ng-repeat=\"value in dayValues\" value=\"{{value}}\">{{value | cronDayName: cronStyle}}</md-option>\n" +
+    "					</md-select>\n" +
+    "				</md-input-container>\n" +
+    "			</div>\n" +
+    "			<div ng-show=\"myFrequency.base >= 5\">\n" +
+    "				<md-input-container>\n" +
+    "					<label>On the</label>\n" +
+    "					<!-- If Multiple is Enabled -->\n" +
+    "					<md-select class=\"day-of-month-value\"\n" +
+    "							ng-model=\"myFrequency.dayOfMonthValues\"\n" +
+    "							ng-if=\"allowMultiple\" multiple>\n" +
+    "						<md-option ng-repeat=\"value in dayOfMonthValues\" value=\"{{value}}\">{{value | cronNumeral}}</md-option>\n" +
+    "					</md-select>\n" +
+    "					<!-- If Multiple is not Enabled -->\n" +
+    "					<md-select class=\"day-of-month-value\"\n" +
+    "							ng-model=\"myFrequency.dayOfMonthValues\"\n" +
+    "							ng-if=\"!allowMultiple\">\n" +
+    "						<md-option ng-repeat=\"value in dayOfMonthValues\" value=\"{{value}}\">{{value | cronNumeral}}</md-option>\n" +
+    "					</md-select>\n" +
+    "				</md-input-container>\n" +
+    "			</div>\n" +
+    "			<div ng-show=\"myFrequency.base == 6&&config.options.allowMonth\">\n" +
+    "				<md-input-container>\n" +
+    "					<label>Of</label>\n" +
+    "					<!-- If Multiple is Enabled -->\n" +
+    "					<md-select class=\"month-value\"\n" +
+    "							ng-model=\"myFrequency.monthValues\"\n" +
+    "							ng-if=\"allowMultiple\" multiple>\n" +
+    "						<md-option ng-repeat=\"value in monthValues\" value=\"{{value}}\">{{value | cronMonthName}}</md-option>\n" +
+    "					</md-select>\n" +
+    "					<!-- If Multiple is not Enabled -->\n" +
+    "					<md-select class=\"month-value\"\n" +
+    "							ng-model=\"myFrequency.monthValues\"\n" +
+    "							ng-if=\"!allowMultiple\">\n" +
+    "						<md-option ng-repeat=\"value in monthValues\" value=\"{{value}}\">{{value | cronMonthName}}</md-option>\n" +
+    "					</md-select>\n" +
+    "				</md-input-container>\n" +
+    "			</div>\n" +
+    "			<div ng-show=\"myFrequency.base >= 3&&config.options.allowHour\">\n" +
+    "				<md-input-container>\n" +
+    "					<label>At (Hour)</label>\n" +
+    "					<!-- If Multiple is Enabled -->\n" +
+    "					<md-select class=\"hour-value\"\n" +
+    "							ng-model=\"myFrequency.hourValues\"\n" +
+    "							ng-if=\"allowMultiple\" multiple>\n" +
+    "						<md-option ng-repeat=\"value in hourValues\" value=\"{{value}}\">{{value}}</md-option>\n" +
+    "					</md-select>\n" +
+    "					<!-- If Multiple is not Enabled -->\n" +
+    "					<md-select class=\"hour-value\"\n" +
+    "							ng-model=\"myFrequency.hourValues\"\n" +
+    "							ng-if=\"!allowMultiple\">\n" +
+    "						<md-option ng-repeat=\"value in hourValues\" value=\"{{value}}\">{{value}}</md-option>\n" +
+    "					</md-select>				\n" +
+    "				</md-input-container>\n" +
+    "			</div>\n" +
+    "			<div ng-show=\"myFrequency.base >= 2&&config.options.allowMinute\">\n" +
+    "				<md-input-container>\n" +
+    "					<label>: (Minute)</label>\n" +
+    "					<!-- If Multiple is Enabled -->\n" +
+    "					<md-select class=\"minute-value\"\n" +
+    "							ng-model=\"myFrequency.minuteValues\"\n" +
+    "							ng-if=\"allowMultiple\" multiple>\n" +
+    "						<md-option ng-repeat=\"value in minuteValues\" value=\"{{value}}\">{{value}}</md-option>\n" +
+    "					</md-select>\n" +
+    "					<!-- If Multiple is not Enabled -->\n" +
+    "					<md-select class=\"minute-value\"\n" +
+    "							ng-model=\"myFrequency.minuteValues\"\n" +
+    "							ng-if=\"!allowMultiple\">\n" +
+    "						<md-option ng-repeat=\"value in minuteValues\" value=\"{{value}}\">{{value}}</md-option>\n" +
+    "					</md-select>\n" +
+    "				</md-input-container>\n" +
+    "			</div>\n" +
+    "			<span ng-show=\"myFrequency.base == 2\"> past the hour</span>\n" +
+    "		</div>\n" +
+    "    </md-layout>\n" +
+    "</md-layout>");
 }]);
 
 "use strict";
@@ -113,6 +129,36 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
             return attributes.template || "cronselection.html";
         },
         link: function($scope, $el, $attr, $ngModel) {
+
+            // handles allowHour and allowMinute variable in options
+            // by default setting them true
+            if(!$scope.config['options']) {
+                $scope.config['options'] = {
+                    allowHour : true,
+                    allowMinute : true
+                };
+            } else {
+                var optionsKeys = Object.keys($scope.config['options']);
+
+                if(!optionsKeys.length) {
+                    $scope.config['options'] = {
+                        allowHour : true,
+                        allowMinute : true
+                    };
+                } else {
+                    // is allowHour key is not present
+                    if(typeof $scope.config['options']['allowHour'] == 'undefined' || $scope.config['options']['allowHour'] == null) {
+                        $scope.config['options']['allowHour'] = true;
+                    }
+
+                    // is allowMinute key is not present
+                    if(typeof $scope.config['options']['allowMinute'] == 'undefined' || $scope.config['options']['allowMinute'] == null) {
+                        $scope.config['options']['allowMinute'] = true;
+                    }
+                }
+            }
+
+
 
             var modelChanged = false;
             

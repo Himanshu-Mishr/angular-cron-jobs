@@ -18,6 +18,36 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
         },
         link: function($scope, $el, $attr, $ngModel) {
 
+            // handles allowHour and allowMinute variable in options
+            // by default setting them true
+            if(!$scope.config['options']) {
+                $scope.config['options'] = {
+                    allowHour : true,
+                    allowMinute : true
+                };
+            } else {
+                var optionsKeys = Object.keys($scope.config['options']);
+
+                if(!optionsKeys.length) {
+                    $scope.config['options'] = {
+                        allowHour : true,
+                        allowMinute : true
+                    };
+                } else {
+                    // is allowHour key is not present
+                    if(typeof $scope.config['options']['allowHour'] == 'undefined' || $scope.config['options']['allowHour'] == null) {
+                        $scope.config['options']['allowHour'] = true;
+                    }
+
+                    // is allowMinute key is not present
+                    if(typeof $scope.config['options']['allowMinute'] == 'undefined' || $scope.config['options']['allowMinute'] == null) {
+                        $scope.config['options']['allowMinute'] = true;
+                    }
+                }
+            }
+
+
+
             var modelChanged = false;
             
             $scope.baseFrequency = baseFrequency;
