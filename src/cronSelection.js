@@ -159,7 +159,7 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
                 }
 
                 if (freq.base === baseFrequency.quarter) {
-                    // freq.monthValues = '*/4';
+                    // freq.monthValues = '*/3';
                 }
             }
         }
