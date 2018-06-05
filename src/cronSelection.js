@@ -70,6 +70,9 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
             }, {
                 value: 6,
                 label: "Year"
+            }, {
+                value: 7,
+                label: "Quarter"
             }];
 
             $scope.$watch("ngModel", function (newValue) {
@@ -153,6 +156,10 @@ angular.module("angular-cron-jobs").directive("cronSelection", ["cronService", "
 
                 if (freq.base === baseFrequency.year) {
                     freq.monthValues = $scope.monthValues[0];
+                }
+
+                if (freq.base === baseFrequency.quarter) {
+                    // freq.monthValues = '*/4';
                 }
             }
         }
